@@ -38,4 +38,17 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:forwording_url] || default)
+    session.delete(:forwording_url)
+  end
+
+  def store_location
+    session[:forwording_url] = request.original_url if request.get?
+  end
+  
 end
