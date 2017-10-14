@@ -5,8 +5,21 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    # 検索機能
+    if params[:search].nil?
+      @match_users = nil
+    else
+      @match_users =  User.activated_true.matching_name(params[:search]) unless params[:search].empty?
+    end
+    # ajax通信
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    # ユーザー一覧
+    @users = User.activated_true.paginate(page: params[:page])
   end
+
 
   def show
     @user = User.find(params[:id])
@@ -76,6 +89,5 @@ class UsersController < ApplicationController
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end
-
 
 end

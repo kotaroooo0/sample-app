@@ -8,6 +8,11 @@ class User < ApplicationRecord
 
   attr_accessor  :remember_token, :activation_token, :reset_token
 
+  # 有効化されたユーザーのみ
+  scope :activated_true, -> {where(activated: true)}
+  # 名前による検索
+  scope :matching_name, -> parts {where("name like '%" + parts + "%'")}
+
   before_save {email.downcase!}
   before_create :create_activation_digest
 
