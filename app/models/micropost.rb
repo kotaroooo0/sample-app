@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
   scope :including_replies, ->{ where{ in_reply_to > 0}}
@@ -15,6 +16,11 @@ class Micropost < ApplicationRecord
       user_name = str[1]
       update_attribute(:in_reply_to, User.find_by(name: user_name).id)
     end
+  end
+
+  # ライクしているユーザーかどうか
+  def like_user?(user_id)
+    likes.find_by(user_id: user_id)
   end
 
   private
