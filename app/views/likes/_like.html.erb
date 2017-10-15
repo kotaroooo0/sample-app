@@ -1,5 +1,5 @@
 <% if micropost.like_user?(current_user.id) %>
-<%= link_to "like #{micropost.like_count}", micropost_like_path(likes, micropost_id: micropost.id), method: :delete, :class => "btn btn-danger btn-sm", id: "like-button", remote: true %>
+<%= link_to "like #{@micropost.like_count}", micropost_like_path(likes, micropost_id: micropost.id), method: :delete, :class => "btn btn-danger btn-sm", id: "like-button", remote: true %>
 <% else %>
-<%= link_to "like #{micropost.like_count}", micropost_likes_path(micropost), method: :post, :class => "btn btn-default btn-sm", :id => "like-button", :remote => true %>
+<%= link_to "like #{@micropost.like_count}", micropost_likes_path(micropost), method: :post, :class => "btn btn-default btn-sm", :id => "like-button", :remote => true %>
 <% end %>
