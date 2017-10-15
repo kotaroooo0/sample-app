@@ -8,7 +8,7 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <%= render 'microposts/reply_modal', {micropost: micropost} %>
-    <%= render 'likes/like', {micropost: micropost}  %>
+    <%= render 'likes/like', {micropost: micropost, likes: @likes}  %>
     <% if current_user?(micropost.user) %>
     <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" }, :class => "btn btn-default btn-sm" %>
     <% end %>
