@@ -1,1 +1,1 @@
-$("#micropost-<%= @micropost.id %> #like-button").html("<%= j(render 'likes/like', {micropost: @micropost, likes: @likes}) %>");
+$("#micropost-<%= @micropost.id %> .like-btn").html("<%= j(render 'likes/like', {micropost: @micropost, likes: @likes}) %>");
