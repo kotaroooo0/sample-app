@@ -1,1 +1,3 @@
-$('#ajax-users').html('<%= j (render @match_users unless @match_users.nil?) %>');
+<% unless @match_users.nil? %>
+$('#ajax-users').html('<%= j (render @match_users) %>');
+<% end %>
