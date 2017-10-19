@@ -5,18 +5,13 @@ class UsersController < ApplicationController
 
   def index
     # 検索機能
-    if params[:search].nil?
-      @match_users = nil
-    else
-      @match_users = User.activated_true.matching_name(params[:search]) unless params[:search].empty?
-    end
-    # ajax通信
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @match_users = User.match_users(params[:search])
     # ユーザー一覧
     @users = User.activated_true.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js # ajax通信
+    end
   end
 
   def show

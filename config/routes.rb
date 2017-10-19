@@ -25,4 +25,10 @@ Rails.application.routes.draw do
   resources :microposts do
     resources :likes, only: %i[create destroy]
   end
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      resources :users
+      resources :microposts, only: %i[create destroy]
+    end
+  end
 end
