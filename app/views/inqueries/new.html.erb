@@ -1,0 +1,16 @@
+<% provide(:title, "Inquery") %>
+<h1>Inquery</h1>
+<%= form_for(@inquery) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: "Compose an inquery...", class: 'form-control' %>
+  </div>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>

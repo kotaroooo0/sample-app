@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  resources :inqueries, only: %i[new create]
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
   resources :microposts, only: %i[create destroy]
