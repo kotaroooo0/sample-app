@@ -5,13 +5,23 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.saveReplyTarget
-    if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+    if @micropost.isDirectMessage?
+      message = @micropost.createDirectMessage
+      if message.save
+        flash[:success] = "Direct message created!"
+        redirect_to root_url
+      else
+        render 'static_pages/home'
+      end
     else
-      @feed_items = []
-      render 'static_pages/home'
+      @micropost.saveReplyTarget
+      if @micropost.save
+        flash[:success] = "Micropost created!"
+        redirect_to root_url
+      else
+        @feed_items = []
+        render 'static_pages/home'
+      end
     end
   end
 
