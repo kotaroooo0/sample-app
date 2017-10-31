@@ -29,7 +29,7 @@ class Micropost < ApplicationRecord
     to_user_name = str[1]
     message_content = str[2]
     from_user_name = User.find(user_id).name
-    Message.new(from_name: from_user_name, to_name: to_user_name, content: message_content)
+    Message.new(from_name: from_user_name, to_name: to_user_name, content: message_content, user_id: user_id)
   end
 
   # ライクしているユーザーかどうか

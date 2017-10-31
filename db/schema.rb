@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20171028060003) do
     t.string   "from_name"
     t.string   "to_name"
     t.text     "content"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|
