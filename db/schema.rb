@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20171028060003) do
     t.string   "from_name"
     t.string   "to_name"
     t.text     "content"
+    t.string   "picture"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

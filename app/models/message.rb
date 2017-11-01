@@ -5,6 +5,14 @@ class Message < ApplicationRecord
   validates :from_name, presence: true
   validates :to_name, presence: true
   validates :content, presence: true, length: { maximum: 250 }
+  validate :picture_size
+  mount_uploader :picture, PictureUploader
 
-  scope :matching_messages, -> (part){find_by(user_id: part)}
+  scope :matching_messages, ->(part) { where(to_name: part) }
+
+  private
+
+  def picture_size
+    errors.add(:picture, 'should be less than 5MB') if picture.size > 5.megabyte
+  end
 end
