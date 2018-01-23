@@ -20,6 +20,7 @@ gem 'jbuilder',     '2.7.0'
 gem 'rubocop'
 gem 'poltergeist'
 gem "database_cleaner"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
